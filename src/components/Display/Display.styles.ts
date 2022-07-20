@@ -5,7 +5,7 @@ type Props = {
 }
 
 
-export const StledDisplay = styled.div<Props>`
+export const StyledDisplay = styled.div<Props>`
     box-sizing: border-box;
     display: flex;
     align-items: space-between;
