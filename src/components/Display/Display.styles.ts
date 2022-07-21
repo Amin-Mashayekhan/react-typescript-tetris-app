@@ -9,7 +9,7 @@ export const StyledDisplay = styled.div<Props>`
     box-sizing: border-box;
     display: flex;
     align-items: space-between;
-    margin: 0 0 20px 0 0;
+    margin: 0 0 20px 0;
     padding: 20px;
     border: 20x solid #777;
     min-height: 20px;
