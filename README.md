@@ -1,3 +1,3 @@
 # React Typescript Tetris App
-Developing...
-Guided by Weibenfalk
+<p> Developing... </p>
+<p>Guided by Weibenfalk </p> 
