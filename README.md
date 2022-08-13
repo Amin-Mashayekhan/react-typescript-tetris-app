@@ -1,1 +1,2 @@
-# react-typescript-tetris-app
+# React Typescript Tetris App
+Developing...
