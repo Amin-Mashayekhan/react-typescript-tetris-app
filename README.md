@@ -1,2 +1,3 @@
 # React Typescript Tetris App
 Developing...
+Guided by Weibenfalk
