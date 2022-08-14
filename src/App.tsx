@@ -1,10 +1,10 @@
 import { StyledTetris, StyledTetrisWrapper } from "./App.styles";
+import {createStage, isColliding} from './gameHelpers';
 
 import Display from './components/Display/Display';
 import React from "react";
 import Stage from './components/Stage/Stage';
 import StartButton from './components/StartButton/StartButton';
-import {createStage} from './gameHelpers';
 import {useInterval} from './hooks/useInterval';
 import {usePlayer} from './hooks/usePlayer';
 import {useStage} from './hooks/useStage';
@@ -18,7 +18,9 @@ const App: React.FC = () => {
   const {player, updatePlayerPos, resetPlayer} = usePlayer();
   const {stage, setStage} = useStage(player, resetPlayer);
   const movePlayer = (dir: number) => {
-    updatePlayerPos({x: dir, y: 0, collided: false});
+    if (!isColliding(player, stage, {x: dir, y: 0})) {
+      updatePlayerPos({x: dir, y: 0, collided: false});
+    } // else we're not making any move
   };
 
   const keyUp = ({keyCode}: {keyCode: number }): void => {
@@ -58,7 +60,17 @@ const App: React.FC = () => {
   }
 
   const drop = (): void => {
-    updatePlayerPos({x: 0, y: 1, collided: false});
+    if (!isColliding(player, stage, {x: 0, y: 1})) {
+      updatePlayerPos({x: 0, y: 1, collided: false});
+    } else{ 
+      // Game over!
+      if (player.pos.y < 1) {
+         console.log("Game over!");
+         setGameOver(true);
+         setDropTime(null);
+      }
+        updatePlayerPos({x: 0, y: 0, collided: true});
+    }
   }
 
   useInterval(() => {
