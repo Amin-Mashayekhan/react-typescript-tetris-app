@@ -60,6 +60,7 @@ const App: React.FC = () => {
   }
 
   const drop = (): void => {
+    console.log(isColliding(player, stage, { x: 0, y: 1 }));
     if (!isColliding(player, stage, {x: 0, y: 1})) {
       updatePlayerPos({x: 0, y: 1, collided: false});
     } else{ 
