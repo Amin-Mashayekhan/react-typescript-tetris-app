@@ -1,5 +1,6 @@
 import App from './App'
 import React from 'react';
+// import ReactDOM from 'react-dom';
 import ReactDOM from 'react-dom/client';
 import bgImage from './img/bg.jpg';
 import { createGlobalStyle } from 'styled-components';
@@ -14,6 +15,14 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+
+// ReactDOM.render(
+//   <>
+//     <GlobalStyles />
+//     <App />
+//   </>,
+//   document.getElementById('root')
+// );
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <>

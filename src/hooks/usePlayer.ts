@@ -15,10 +15,10 @@ export type PLAYER = {
 export const usePlayer = () => {
     const [player, setPlayer] = React.useState({} as PLAYER);
 
-    const updatePlayerPos = ({ x, y, collided }: { x: number, y: number, collided: boolean }) => {
+    const updatePlayerPos = ({ x, y, collided }: { x: number, y: number, collided: boolean }): void => {
         setPlayer(prev => ({
             ...prev,
-            pos: { x: prev.pos.x += x, y: prev.pos.y += y },
+            pos: { x: (prev.pos.x += x), y: (prev.pos.y += y) },
             collided
         }));
     };
