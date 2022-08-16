@@ -17,7 +17,7 @@ export const useStage = (player: PLAYER, resetPlayer: () => void) => {
             // First flush the stage
             // IF it says "clear" but don't have a 0 it means that it's the players move and should be cleared.
             const newStage = prevStage.map(
-                row => row.map(cell => (cell[1] === "clear" ? [0, , 'clear'] : cell)) as STAGECELL[]
+                row => row.map(cell => (cell[1] === 'clear' ? [0, 'clear'] : cell)) as STAGECELL[]
             );
 
             // Then draw the tetromino
