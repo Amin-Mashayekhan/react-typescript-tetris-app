@@ -15,7 +15,7 @@ const App: React.FC = () => {
 
   const gameArea = React.useRef<HTMLDivElement>(null);
 
-  const {player, updatePlayerPos, resetPlayer} = usePlayer();
+  const {player, updatePlayerPos, resetPlayer, playerRotate} = usePlayer();
   const {stage, setStage} = useStage(player, resetPlayer);
   const movePlayer = (dir: number) => {
     if (!isColliding(player, stage, {x: dir, y: 0})) {
@@ -56,6 +56,7 @@ const App: React.FC = () => {
     } else if (keyCode === 38) {
       // this is going to be be the up arrow on keyboard
       // Implement this later  
+      playerRotate(stage);
     }
   }
 
