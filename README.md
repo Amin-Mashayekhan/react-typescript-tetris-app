@@ -10,7 +10,7 @@
 
 ## Usage
 ```bash
-# Install dependencies
+# Install dependencies and run the app
 
  $ npm install
 
