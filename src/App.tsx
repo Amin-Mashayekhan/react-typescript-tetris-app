@@ -5,6 +5,7 @@ import Display from './components/Display/Display';
 import React from "react";
 import Stage from './components/Stage/Stage';
 import StartButton from './components/StartButton/StartButton';
+import {useGameStatus} from './hooks/useGameStatus';
 import {useInterval} from './hooks/useInterval';
 import {usePlayer} from './hooks/usePlayer';
 import {useStage} from './hooks/useStage';
@@ -16,7 +17,9 @@ const App: React.FC = () => {
   const gameArea = React.useRef<HTMLDivElement>(null);
 
   const {player, updatePlayerPos, resetPlayer, playerRotate} = usePlayer();
-  const {stage, setStage} = useStage(player, resetPlayer);
+  const {stage, setStage, rowsCleared } = useStage(player, resetPlayer);
+  const {score, setScore, rows, setRows, level, setLevel} = useGameStatus(rowsCleared);
+
   const movePlayer = (dir: number) => {
     if (!isColliding(player, stage, {x: dir, y: 0})) {
       updatePlayerPos({x: dir, y: 0, collided: false});
@@ -38,6 +41,9 @@ const App: React.FC = () => {
     setStage(createStage());
     setDropTime(1000);
     resetPlayer();
+    setScore(0);
+    setLevel(1);
+    setRows(0);
     setGameOver(false);
   }
 
@@ -61,6 +67,12 @@ const App: React.FC = () => {
   }
 
   const drop = (): void => {
+    // Increase level when player has cleared 10 rows
+    if(rows > level * 10) {
+      setLevel(prev => prev + 1);
+      // Also increase speed when player
+      setDropTime(1000/ level + 200);
+    }
     if (!isColliding(player, stage, {x: 0, y: 1})) {
       updatePlayerPos({x: 0, y: 1, collided: false});
     } else{ 
@@ -89,9 +101,9 @@ const App: React.FC = () => {
           </>
         ) : (
           <>
-            <Display text={`Score:`} />
-            <Display text={`Rows:`} />
-            <Display text={`Level:`} />
+            <Display text={`Score: ${score}`} />
+            <Display text={`Rows: ${rows}`} />
+            <Display text={`Level: ${level}`} />
       
           </>
         )
