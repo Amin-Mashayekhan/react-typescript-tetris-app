@@ -3,7 +3,7 @@
 
 ## Some of technoligies used
 - Typescript
-- vite
+- Vite
 - React Hooks
 - styled-components
 
